@@ -45,6 +45,35 @@ function isAllowedPublicPath(pathname) {
 }
 
 const issues = [];
+
+async function getGeneratedPages(directory = distDir) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const pages = [];
+
+  for (const entry of entries) {
+    const outputPath = join(directory, entry.name);
+    if (entry.isDirectory()) {
+      pages.push(...await getGeneratedPages(outputPath));
+    } else if (entry.name === "index.html") {
+      pages.push(outputPath);
+    }
+  }
+
+  return pages;
+}
+
+function routeFromOutputPath(outputPath) {
+  const relativePath = outputPath.slice(distDir.length).replace(/\\/g, "/");
+  return relativePath === "/index.html"
+    ? "/"
+    : relativePath.replace(/\/index\.html$/, "/");
+}
+
+const generatedPages = await getGeneratedPages();
+const genericCatalogPhrases = [
+  "long-tail earnings profile",
+  "durable catalog that continues to attract listeners through"
+];
 for (const pathname of sitemapLocations) {
   if (!isAllowedPublicPath(pathname)) {
     issues.push(`unexpected sitemap URL: ${pathname}`);
@@ -75,6 +104,13 @@ for (const directory of ["artist", "song"]) {
     if (!output.includes('<meta name="robots" content="noindex, follow"')) {
       issues.push(`unlisted catalog page is missing noindex: ${pathname}`);
     }
+
+    for (const phrase of genericCatalogPhrases) {
+      if (output.toLowerCase().includes(phrase)) {
+        issues.push(`unpublished catalog page contains generic earnings copy: ${pathname}`);
+        break;
+      }
+    }
   }
 }
 
@@ -86,6 +122,17 @@ for (const entry of await readdir(caseStudyDirectory, { withFileTypes: true })) 
   const outputStat = await stat(outputPath);
   if (outputStat.isFile() && !sitemapLocations.has(pathname)) {
     issues.push(`published case study missing from sitemap: ${pathname}`);
+  }
+}
+
+for (const outputPath of generatedPages) {
+  const output = await readFile(outputPath, "utf8");
+  const isNoindex = output.includes('<meta name="robots" content="noindex, follow"');
+  if (isNoindex) continue;
+
+  const pathname = routeFromOutputPath(outputPath);
+  if (!sitemapLocations.has(pathname)) {
+    issues.push(`indexable page is missing from sitemap: ${pathname}`);
   }
 }
 

@@ -13,6 +13,7 @@ const songCaseStudies = caseStudies.filter((caseStudy) =>
 <BaseLayout
   title="Published Song Research | How Much Music"
   description="Source-backed music case studies with song-level public records, evidence limits, and related catalog links."
+  noindex
 >
   <section class="hero">
     <div class="hero-copy">
@@ -21,6 +22,10 @@ const songCaseStudies = caseStudies.filter((caseStudy) =>
       <p>
         These articles use public records to explain what can be established about a song and what
         still requires private rights or accounting information.
+      </p>
+      <p class="results-note">
+        This filtered view is kept for direct visitors. <a href={`${baseUrl}case-studies/`}>Browse all published case studies</a>
+        for the canonical editorial collection.
       </p>
     </div>
     <div class="hero-panel" aria-label="Published song research summary">

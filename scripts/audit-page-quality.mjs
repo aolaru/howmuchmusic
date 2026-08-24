@@ -345,7 +345,8 @@ async function main() {
       albums: albums.length,
       selfHostedArtistPhotos: artistImageSlugs.size,
       artistPhotoCoverage: Number((artistImageSlugs.size / artists.length).toFixed(3)),
-      missingArtistPhotos: artists.length - artistImageSlugs.size
+      generatedArtistArtwork: artists.length - artistImageSlugs.size,
+      artistVisualCoverage: artists.length
     },
     summary: {
       artists: summarize(topArtists),
@@ -402,7 +403,7 @@ async function main() {
   console.log(
     `- Human quality audit: ${humanQualityIssueCount} editorial flag(s) across review-ready pages.`
   );
-  console.log(`- Artist photo coverage: ${artistImageSlugs.size}/${artists.length}`);
+  console.log(`- Artist visual coverage: ${artists.length}/${artists.length} (${artistImageSlugs.size} licensed photos; ${artists.length - artistImageSlugs.size} generated catalog artworks)`);
   if (artistImagePriority.length > 0) {
     console.log(`- Next artist images: ${artistImagePriority.slice(0, 5).map((artist) => artist.name).join(", ")}`);
   }

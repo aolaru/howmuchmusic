@@ -503,7 +503,7 @@ export function getArtistOwnershipNote(artist: Artist) {
 export function getArtistOverviewText(artist: Artist) {
   return (
     artist.bio?.trim() ||
-    `${artist.name}${artist.country ? ` from ${artist.country}` : ""} has a catalog that still attracts listeners through recognisable songs, repeat listening, and long-tail streaming demand.`
+    `${artist.name}${artist.country ? ` from ${artist.country}` : ""} is listed in the catalog.`
   );
 }
 

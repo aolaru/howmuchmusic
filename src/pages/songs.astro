@@ -9,6 +9,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const visualSongLimit = 96;
+const cardPageSize = 48;
 const visualSongs = rankedSongs.map((entry) => entry.song).slice(0, visualSongLimit);
 const visualSongSlugs = new Set(visualSongs.map((song) => song.slug));
 const compactSongs = songs.filter((song) => !visualSongSlugs.has(song.slug));
@@ -89,7 +90,7 @@ const latestUpdatedSongs = [...new Set(recentUpdates.flatMap((entry) =>
     <a class="catalog-path-card" href="#all-songs-title">
       <span class="eyebrow">Browse</span>
       <strong>Featured catalog cards</strong>
-      <span>Browse featured cards or open the complete text list below.</span>
+      <span>Browse 96 featured cards, or search all {songs.length} records.</span>
     </a>
   </section>
 
@@ -135,7 +136,10 @@ const latestUpdatedSongs = [...new Set(recentUpdates.flatMap((entry) =>
 
   <section aria-labelledby="all-songs-title">
     <h2 id="all-songs-title">Song Directory</h2>
-    <p class="results-note">Featured song cards are shown first. The complete catalog remains available as a compact text list below.</p>
+    <p class="results-note">
+      The first {visualSongs.length} records have visual cards, shown {cardPageSize} at a time. Use search for any of the {songs.length} song records,
+      or open the complete text list below.
+    </p>
     <details class="advanced-filters">
       <summary>Filter and sort songs</summary>
       <div class="filters" data-filter-root="songs">
@@ -172,13 +176,13 @@ const latestUpdatedSongs = [...new Set(recentUpdates.flatMap((entry) =>
       </div>
     </details>
     <div class="active-filters" id="song-active-filters"></div>
-    <p class="results-note" id="song-results-note">Showing {visualSongs.length} featured song cards</p>
+    <p class="results-note" id="song-results-note">Showing {cardPageSize} of {visualSongs.length} featured song cards</p>
     <div class="card-grid" id="song-card-grid">
       {visualSongs.map((song) => {
         const artist = getArtist(song.artist);
         const artistName = artist?.name ?? song.artist;
         const artistVisual = artist ? getArtistVisual(artist) : undefined;
-        const imageSrc = !artistVisual || artistVisual.provider === "generated" ? `${baseUrl}artist-placeholder.svg` : artistVisual.src;
+        const imageSrc = artistVisual?.src ?? `${baseUrl}artist-placeholder.svg`;
         const decade = song.year ? `${Math.floor(song.year / 10) * 10}s` : "";
         const updated = getLatestGitDate([
           `src/data/songs/${song.slug}.json`,
@@ -238,7 +242,7 @@ const latestUpdatedSongs = [...new Set(recentUpdates.flatMap((entry) =>
       })}
     </div>
     <div class="directory-actions">
-      <button class="load-more-button" type="button" id="song-load-more">Show more songs</button>
+      <button class="load-more-button" type="button" id="song-load-more">Show more featured songs</button>
     </div>
     {compactSongs.length > 0 && (
       <details class="compact-directory">
@@ -367,10 +371,12 @@ const latestUpdatedSongs = [...new Set(recentUpdates.flatMap((entry) =>
         if (matches && withinLimit) shown += 1;
       });
 
+      const hasActiveFilters = Boolean(query || artist || decade || sort !== "alpha");
       songNote.textContent = matched > shown
-        ? `Showing ${shown} of ${matched} songs`
-        : `Showing ${matched} song${matched === 1 ? "" : "s"}`;
+        ? `Showing ${shown} of ${matched} ${hasActiveFilters ? "matching " : ""}featured song cards`
+        : `Showing ${matched} ${hasActiveFilters ? "matching " : ""}featured song card${matched === 1 ? "" : "s"}`;
       loadMoreButton.hidden = shown >= matched;
+      loadMoreButton.textContent = `Show ${Math.min(pageSize, Math.max(matched - shown, 0))} more featured songs`;
       renderActiveFilters();
       syncUrl();
     };

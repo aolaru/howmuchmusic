@@ -8,16 +8,13 @@ import {
   getConfidenceSummary,
   getArtistConfidence,
   getArtistMethodology,
-  getArtistOverviewText,
   getArtistOwnershipNote,
-  getArtistRevenueContext,
   getArtistVisual,
   getRelatedArtists,
   rankedArtists,
   songs,
   type Artist
 } from "../../lib/catalog";
-import { getArtistEditorial } from "../../lib/editorial";
 import { formatFreshnessDate, getLatestGitDate } from "../../lib/freshness";
 import { getArtistTopSongs, hasPublicArtistPage } from "../../lib/publicPages";
 import { getArtistReviewReferences, isArtistReviewReady, isSongReviewReady } from "../../lib/reviewReady";
@@ -44,16 +41,20 @@ const relatedCaseStudies = caseStudies.filter((caseStudy) =>
 const hasDetailedEarnings = Boolean(artist.earnings || artist.ownership);
 const artistVisual = getArtistVisual(artist);
 const imageSrc = artistVisual.src;
-const editorial = getArtistEditorial(artist, artistSongs);
 const methodology = getArtistMethodology(artist);
 const confidence = getArtistConfidence(artist);
 const ownershipNote = getArtistOwnershipNote(artist);
 const relatedArtists = getRelatedArtists(artist, 8).filter(hasPublicArtistPage).slice(0, 4);
-const overviewText = getArtistOverviewText(artist);
-const revenueContext = getArtistRevenueContext(artist).slice(0, 3);
 const allReferenceLinks = getArtistReviewReferences(artist, artistSongs);
 const isReviewReady = isArtistReviewReady(artist, artistSongs) && artistVisual.provider === "artistPhoto";
-const articleSourceNotes = article?.sources ?? editorial.sources;
+const catalogFacts = [artist.genre, artist.country, artist.active_since ? `active since ${artist.active_since}` : undefined]
+  .filter(Boolean)
+  .join(" · ");
+const overviewText = isReviewReady
+  ? article?.shortAnswer ?? `${artist.name} is a published music catalog research page.`
+  : `${artist.name} is listed as a catalog research record${catalogFacts ? `: ${catalogFacts}.` : "."}`;
+const revenueContext = article?.sources?.slice(0, 3) ?? [];
+const articleSourceNotes = article?.sources ?? [];
 const articleEvidence = article?.evidence ?? [];
 const pageDescription = isReviewReady && article?.shortAnswer && article.shortAnswer.length >= 70
   ? article.shortAnswer
@@ -267,8 +268,9 @@ const artistSchema = {
   genre: artist.genre,
   foundingLocation: artist.country,
   description:
-    artist.bio ??
-    `${artist.name} income estimate with songs, ownership context, and catalog revenue strategy.`,
+    isReviewReady
+      ? article?.shortAnswer ?? artist.bio ?? `${artist.name} music catalog research.`
+      : `${artist.name} catalog research profile with basic identity and career metadata.`,
   track: linkedArtistSongs.map((song) => ({
     "@type": "MusicRecording",
     name: song.title,
@@ -377,7 +379,7 @@ const pageJsonLd = articleSchema ? [artistSchema, articleSchema] : artistSchema;
           <p class="song-lead-answer"><strong>{relatedCaseStudies.length > 0 && !isReviewReady ? `For the source-backed answer about ${artist.name}, use the published research above.` : snippetLead}</strong></p>
           <p class="song-takeaway"><strong>Takeaway:</strong> {relatedCaseStudies.length > 0 && !isReviewReady ? "The catalog details below are supporting context, not a second earnings article." : takeaway}</p>
           {isReviewReady ? (
-            <p>{article?.shortAnswer ?? editorial.shortAnswer}</p>
+            <p>{article?.shortAnswer}</p>
           ) : (
             <p>
               This entry records basic catalog information.
@@ -710,7 +712,7 @@ const pageJsonLd = articleSchema ? [artistSchema, articleSchema] : artistSchema;
           </div>
         </details>}
 
-        {(relatedArtists.length > 0 || artist.notable_for || artist.career_highlight || article?.insight || editorial.insight) && (
+        {(relatedArtists.length > 0 || (isReviewReady && (artist.notable_for || artist.career_highlight || article?.insight))) && (
           <section aria-labelledby="more-context-title" class="song-context-section">
             <h2 id="more-context-title">More Context</h2>
             <div class="context-grid">
@@ -730,7 +732,7 @@ const pageJsonLd = articleSchema ? [artistSchema, articleSchema] : artistSchema;
                 </div>
               )}
 
-              {(artist.notable_for || artist.career_highlight) && (
+              {isReviewReady && (artist.notable_for || artist.career_highlight) && (
                 <div class="context-card">
                   <h3>Key Career Highlights</h3>
                   <ul class="meta-list">
@@ -740,10 +742,10 @@ const pageJsonLd = articleSchema ? [artistSchema, articleSchema] : artistSchema;
                 </div>
               )}
 
-              {(article?.insight || editorial.insight) && (
+              {isReviewReady && article?.insight && (
                 <div class="context-card">
                   <h3>Editorial Insight</h3>
-                  <p>{article?.insight ?? editorial.insight}</p>
+                  <p>{article.insight}</p>
                 </div>
               )}
             </div>

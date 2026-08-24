@@ -16,7 +16,6 @@ import {
   songs,
   type Song
 } from "../../lib/catalog";
-import { getSongEditorial } from "../../lib/editorial";
 import { formatFreshnessDate, getLatestGitDate } from "../../lib/freshness";
 import { hasPublicArtistPage } from "../../lib/publicPages";
 import { getSongReviewReferences, isSongReviewReady } from "../../lib/reviewReady";
@@ -61,15 +60,14 @@ const imageSrc = providerArtwork ?? createSongArtwork(song.title, artist?.name ?
   album: song.album
 });
 const playerLinks = Object.entries(song.player?.links ?? {}).filter(([, url]) => url) as Array<[string, string]>;
-const editorial = getSongEditorial(song, artist);
 const methodology = getSongMethodology(song);
 const confidence = getSongConfidence(song);
 const ownershipNote = getSongOwnershipNote(song, artist);
 const moreFromAlbum = getMoreSongsFromAlbum(song, 6).filter(isSongReviewReady).slice(0, 4);
 const contextSongs = getContextSongs(song, 8).filter(isSongReviewReady).slice(0, 4);
 const leadRevenue = song.earnings?.artist_or_estate_share ?? song.estimated_revenue;
-const conciseWhy = (song.revenue_drivers ?? article?.whyItStillMakesMoney ?? [...editorial.why]).slice(0, 3);
-const detailedBreakdown = article?.breakdown ?? [...editorial.breakdown];
+const conciseWhy = article?.whyItStillMakesMoney?.slice(0, 3) ?? [];
+const detailedBreakdown = article?.breakdown ?? [];
 const comparisonSongs = rankedSongs
   .filter((entry) => entry.song.slug !== song.slug && isSongReviewReady(entry.song))
   .map((entry) => {
@@ -456,7 +454,7 @@ const pageJsonLd = articleSchema ? [songSchema, articleSchema] : songSchema;
           <p class="song-lead-answer"><strong>{relatedCaseStudies.length > 0 && !isReviewReady ? `For the source-backed answer about ${song.title}, use the published research above.` : snippetLead}</strong></p>
           <p class="song-takeaway"><strong>Takeaway:</strong> {relatedCaseStudies.length > 0 && !isReviewReady ? "The catalog details below are supporting context, not a second earnings article." : takeaway}</p>
           {isReviewReady ? (
-            <p>{song.meaning_summary ?? editorial.meaning}</p>
+            <p>{article?.shortAnswer ?? song.meaning_summary}</p>
           ) : (
             <p>
               This entry records basic release and listening information. It does not publish an earnings
@@ -840,7 +838,7 @@ const pageJsonLd = articleSchema ? [songSchema, articleSchema] : songSchema;
                     {detailedBreakdown.slice(0, 4).map((point) => (
                       <div class="compact-context-card"><span>{point}</span></div>
                     ))}
-                    <div class="compact-context-card"><strong>Lifetime estimate</strong><span>{article?.lifetimeEstimate ?? editorial.lifetime}</span></div>
+                    {article?.lifetimeEstimate && <div class="compact-context-card"><strong>Lifetime estimate</strong><span>{article.lifetimeEstimate}</span></div>}
                   </>
                 )}
               </div>

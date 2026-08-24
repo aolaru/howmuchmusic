@@ -9,6 +9,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const visualArtistLimit = 96;
+const cardPageSize = 48;
 const visualArtists = rankedArtists.map((entry) => entry.artist).slice(0, visualArtistLimit);
 const countries = [...new Set(artists.map((artist) => artist.country).filter(Boolean))].sort();
 const recentUpdates = getCatalogUpdates(20);
@@ -89,7 +90,7 @@ const latestUpdatedArtists = [...new Set(recentUpdates.flatMap((entry) =>
     <a class="catalog-path-card" href="#all-artists-title">
       <span class="eyebrow">Browse</span>
       <strong>Featured artist cards</strong>
-      <span>Browse featured cards or open the complete text list below.</span>
+      <span>Browse 96 featured cards, or search all {artists.length} records.</span>
     </a>
   </section>
 
@@ -125,7 +126,10 @@ const latestUpdatedArtists = [...new Set(recentUpdates.flatMap((entry) =>
 
   <section aria-labelledby="all-artists-title">
     <h2 id="all-artists-title">Artist Directory</h2>
-    <p class="results-note">Featured artist cards are shown first. The complete catalog remains available as a compact text list below.</p>
+    <p class="results-note">
+      The first {visualArtists.length} records have visual cards, shown {cardPageSize} at a time. Use search for any of the {artists.length} artist records,
+      or open the complete text list below.
+    </p>
     <details class="advanced-filters">
       <summary>Filter and sort artists</summary>
       <div class="filters" data-filter-root="artists">
@@ -152,12 +156,12 @@ const latestUpdatedArtists = [...new Set(recentUpdates.flatMap((entry) =>
       </div>
     </details>
     <div class="active-filters" id="artist-active-filters"></div>
-    <p class="results-note" id="artist-results-note">Showing {visualArtists.length} featured artist cards</p>
+    <p class="results-note" id="artist-results-note">Showing {cardPageSize} of {visualArtists.length} featured artist cards</p>
     <div class="card-grid" id="artist-card-grid">
       {visualArtists.map((artist) => (
         (() => {
           const artistVisual = getArtistVisual(artist);
-          const imageSrc = artistVisual.provider === "generated" ? `${baseUrl}artist-placeholder.svg` : artistVisual.src;
+          const imageSrc = artistVisual.src;
           const updated = getLatestGitDate([
             `src/data/artists/${artist.slug}.json`,
             "src/data/artistMetadata.ts",
@@ -207,7 +211,7 @@ const latestUpdatedArtists = [...new Set(recentUpdates.flatMap((entry) =>
       ))}
     </div>
     <div class="directory-actions">
-      <button class="load-more-button" type="button" id="artist-load-more">Show more artists</button>
+      <button class="load-more-button" type="button" id="artist-load-more">Show more featured artists</button>
     </div>
     <details class="compact-directory">
       <summary>
@@ -321,10 +325,12 @@ const latestUpdatedArtists = [...new Set(recentUpdates.flatMap((entry) =>
         if (matches && withinLimit) shown += 1;
       });
 
+      const hasActiveFilters = Boolean(query || country || sort !== "alpha");
       artistNote.textContent = matched > shown
-        ? `Showing ${shown} of ${matched} artists`
-        : `Showing ${matched} artist${matched === 1 ? "" : "s"}`;
+        ? `Showing ${shown} of ${matched} ${hasActiveFilters ? "matching " : ""}featured artist cards`
+        : `Showing ${matched} ${hasActiveFilters ? "matching " : ""}featured artist card${matched === 1 ? "" : "s"}`;
       loadMoreButton.hidden = shown >= matched;
+      loadMoreButton.textContent = `Show ${Math.min(pageSize, Math.max(matched - shown, 0))} more featured artists`;
       renderActiveFilters();
       syncUrl();
     };
