@@ -35,6 +35,18 @@ export const updateHighlights = [
 // This is a curated visitor-facing record, not a raw export of every repository commit.
 export const recentSiteUpdates: SiteUpdate[] = [
   {
+    date: "August 25, 2026",
+    kind: "Fixed",
+    title: "Catalog publication surface tightened",
+    detail:
+      "Unreviewed artist and song profiles now present basic catalog facts rather than generic earnings language. Duplicate reviewed collection views were kept available to visitors but removed from search indexing, and directory limits now explain how to browse the full catalog.",
+    links: [
+      { label: "Read the editorial policy", href: "/editorial-policy/" },
+      { label: "Browse case studies", href: "/case-studies/" },
+      { label: "Search the catalog", href: "/search/" }
+    ]
+  },
+  {
     date: "August 21, 2026",
     kind: "Updated",
     title: "Updates page rebuilt as a curated public log",
@@ -109,7 +121,11 @@ export const recentSiteUpdates: SiteUpdate[] = [
     kind: "Updated",
     title: "Catalog coverage and editorial paths expanded",
     detail:
-      "Added researched artist and song records while improving reviewed-page discovery and reader paths into the catalog."
+      "Added researched artist and song records while improving reviewed-page discovery and reader paths into the catalog.",
+    links: [
+      { label: "Browse artists", href: "/artists/" },
+      { label: "Browse songs", href: "/songs/" }
+    ]
   },
   {
     date: "June 18, 2026",
@@ -128,42 +144,54 @@ export const recentSiteUpdates: SiteUpdate[] = [
     kind: "Updated",
     title: "Reviewed content experience expanded",
     detail:
-      "Reviewed artist and song collections gained clearer source context, confidence explanations, and direct routes into the broader catalog."
+      "Reviewed artist and song collections gained clearer source context, confidence explanations, and direct routes into the broader catalog.",
+    links: [{ label: "Browse case studies", href: "/case-studies/" }]
   },
   {
     date: "May 26, 2026",
     kind: "Updated",
     title: "Priority song articles received visible source context",
     detail:
-      "Expanded evidence sections on leading song pages so readers can distinguish public context from the limits of an estimate."
+      "Expanded evidence sections on leading song pages so readers can distinguish public context from the limits of an estimate.",
+    links: [{ label: "Read the methodology", href: "/insights/methodology/" }]
   },
   {
     date: "May 25, 2026",
     kind: "New",
     title: "Review-ready navigation and public contact details added",
     detail:
-      "Added an info@howmuchmusic.com contact route, article references, and a clearer path toward reviewed content during the publisher-review work."
+      "Added an info@howmuchmusic.com contact route, article references, and a clearer path toward reviewed content during the publisher-review work.",
+    links: [
+      { label: "Contact", href: "/contact/" },
+      { label: "Read the editorial policy", href: "/editorial-policy/" }
+    ]
   },
   {
     date: "May 10, 2026",
     kind: "Updated",
     title: "Top pages, album context, and artist images improved",
     detail:
-      "Improved priority content, album quality, image coverage, and the presentation of modeled ranges."
+      "Improved priority content, album quality, image coverage, and the presentation of modeled ranges.",
+    links: [
+      { label: "Browse artists", href: "/artists/" },
+      { label: "Browse songs", href: "/songs/" }
+    ]
   },
   {
     date: "May 6, 2026",
     kind: "Updated",
     title: "Directory discovery and image coverage improved",
     detail:
-      "Made artist browsing easier to scan, added content explainers, and expanded artist-photo coverage."
+      "Made artist browsing easier to scan, added content explainers, and expanded artist-photo coverage.",
+    links: [{ label: "Browse artists", href: "/artists/" }]
   },
   {
     date: "April 30, 2026",
     kind: "Fixed",
     title: "Header search and catalog sorting refined",
     detail:
-      "Corrected header autosuggest behavior, improved browse-page filters and sorting, and added the current logo and favicon assets."
+      "Corrected header autosuggest behavior, improved browse-page filters and sorting, and added the current logo and favicon assets.",
+    links: [{ label: "Search artists and songs", href: "/search/" }]
   },
   {
     date: "April 28, 2026",

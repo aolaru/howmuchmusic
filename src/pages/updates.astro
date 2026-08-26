@@ -40,9 +40,11 @@ const jsonLd = {
         search the catalog rather than reading the changelog first.
       </p>
       <div class="updates-hero-meta" aria-label="Update log scope">
-        <span>Curated recent highlights</span>
+        <span>Last updated {recentSiteUpdates[0]?.date}</span>
+        <span>Curated public log</span>
         <span>Earlier launch log archived below</span>
       </div>
+      <p class="results-note">This is a reader-facing record of meaningful public changes, not an automatic feed of every repository commit.</p>
       <div class="related-link-row">
         <a href={`${baseUrl}case-studies/`}>Browse case studies</a>
         <a href={`${baseUrl}search/`}>Search the catalog</a>
