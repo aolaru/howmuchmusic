@@ -3,10 +3,10 @@
   "description": "Artist candidates awaiting source-led research before they can enter the catalog publishing queue.",
   "candidates": [
     { "name": "Amy Winehouse", "slug": "amy-winehouse", "status": "research-published", "addedAt": "2026-08-20", "researchedOn": "2026-08-20", "caseStudy": "amy-winehouse-back-to-black-public-record" },
-    { "name": "Avicii", "slug": "avicii", "status": "pending-research", "addedAt": "2026-08-20" },
-    { "name": "B.B. King", "slug": "bb-king", "status": "pending-research", "addedAt": "2026-08-20" },
+    { "name": "Avicii", "slug": "avicii", "status": "research-published", "addedAt": "2026-08-20", "researchedOn": "2026-08-31", "caseStudy": "avicii-wake-me-up-public-record" },
+    { "name": "B.B. King", "slug": "bb-king", "status": "research-published", "addedAt": "2026-08-20", "researchedOn": "2026-08-31", "caseStudy": "bb-king-live-at-the-regal-public-record" },
     { "name": "Barry White", "slug": "barry-white", "status": "pending-research", "addedAt": "2026-08-20" },
-    { "name": "Black Eyed Peas", "slug": "black-eyed-peas", "status": "pending-research", "addedAt": "2026-08-20" },
+    { "name": "Black Eyed Peas", "slug": "black-eyed-peas", "status": "research-published", "addedAt": "2026-08-20", "researchedOn": "2026-08-31", "caseStudy": "black-eyed-peas-i-gotta-feeling-public-record" },
     { "name": "Bloc Party", "slug": "bloc-party", "status": "pending-research", "addedAt": "2026-08-20" },
     { "name": "Bobby Brown", "slug": "bobby-brown", "status": "pending-research", "addedAt": "2026-08-20" },
     { "name": "Carly Rae Jepsen", "slug": "carly-rae-jepsen", "status": "pending-research", "addedAt": "2026-08-20" },

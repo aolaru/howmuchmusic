@@ -35,6 +35,18 @@ export const updateHighlights = [
 // This is a curated visitor-facing record, not a raw export of every repository commit.
 export const recentSiteUpdates: SiteUpdate[] = [
   {
+    date: "August 31, 2026",
+    kind: "New",
+    title: "Three source-backed music-rights case studies published",
+    detail:
+      "Added research records for Avicii, B.B. King, and Black Eyed Peas. Each article documents a narrow public record and states why chart, certification, or recognition evidence does not verify royalties, ownership, or personal income.",
+    links: [
+      { label: "Avicii: Wake Me Up", href: "/case-studies/avicii-wake-me-up-public-record/" },
+      { label: "B.B. King: Live at the Regal", href: "/case-studies/bb-king-live-at-the-regal-public-record/" },
+      { label: "Black Eyed Peas: I Gotta Feeling", href: "/case-studies/black-eyed-peas-i-gotta-feeling-public-record/" }
+    ]
+  },
+  {
     date: "August 25, 2026",
     kind: "Fixed",
     title: "Catalog publication surface tightened",

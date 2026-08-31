@@ -1065,16 +1065,15 @@ export const caseStudies: CaseStudy[] = [
     slug: "amy-winehouse-back-to-black-public-record",
     title: "Amy Winehouse's Back to Black: public recognition is not a royalty record",
     artist: "Amy Winehouse",
-    focus: "Awards, certification, and preservation",
+    focus: "Awards and certification context",
     summary:
-      "Public records document recognition for Back to Black across an award, certification, and preservation context. They do not disclose revenue, rights ownership, or payments to any participant.",
+      "Public records document award and certification context for Back to Black. They do not disclose revenue, rights ownership, or payments to any participant.",
     documentedRecord: [
-      "The Library of Congress records the 2006 recording Back to Black as added to the National Recording Registry in 2025.",
       "RIAA's Gold & Platinum search lists separate Back to Black album and single certification records for Amy Winehouse, dated 2008 and 2015 respectively.",
       "The Recording Academy's 2008 awards record lists Back To Black as the Best Pop Vocal Album winner and identifies Amy Winehouse as the songwriter for Rehab in the Song of the Year category."
     ],
     editorialReading: [
-      "These are three distinct public records. The Library of Congress entry concerns a specific recording's preservation status; the RIAA page distinguishes an album record from a single record; and the Recording Academy page records awards and credits. They should not be combined into one implied sales, ownership, or income figure.",
+      "These are two distinct public records. The RIAA page distinguishes an album record from a single record, while the Recording Academy page records awards and credits. They should not be combined into one implied sales, ownership, or income figure.",
       "The Song of the Year credit for Rehab is useful evidence of a songwriting credit in that award context. It does not establish current publishing ownership, master ownership, contractual participation, or a payment to any person or company."
     ],
     rightsQuestion:
@@ -1085,7 +1084,7 @@ export const caseStudies: CaseStudy[] = [
       {
         title: "Keep the album and recording evidence separate",
         paragraphs: [
-          "The RIAA search page presents Back to Black as both an album and a single entry, each with its own certification date. The Library of Congress document, by contrast, identifies the 2006 recording Back to Black. Those labels matter because an album, a single recording, and an award category are not interchangeable units of analysis.",
+          "The RIAA search page presents Back to Black as both an album and a single entry, each with its own certification date. The Recording Academy page, by contrast, records an album award and a separate songwriting credit for Rehab. Those labels matter because an album, a single recording, and an award category are not interchangeable units of analysis.",
           "A careful reader can use the records to describe documented public recognition. The sources do not supply a common unit that would allow the entries to be added together, converted into streams, or treated as a financial ledger."
         ]
       },
@@ -1100,17 +1099,11 @@ export const caseStudies: CaseStudy[] = [
     limitations: [
       "The cited sources do not disclose royalty statements, contract terms, recoupment, costs, or payments for Back to Black or Rehab.",
       "The award credits identify work in an award context; they do not establish current master ownership, publishing ownership, or contractual shares.",
-      "The RIAA entries and National Recording Registry record do not provide a complete worldwide sales, streaming, licensing, or revenue history.",
+      "The RIAA entries and Recording Academy awards record do not provide a complete worldwide sales, streaming, licensing, or revenue history.",
       "This article does not estimate Amy Winehouse's income, an estate's income, catalog value, or any participant's share."
     ],
     reviewedOn: "August 20, 2026",
     sources: [
-      {
-        label: "Library of Congress: Back to Black National Recording Registry essay",
-        url: "https://www.loc.gov/static/programs/national-recording-preservation-board/documents/Back-to-Black_Sounes.pdf",
-        note: "Records the 2006 recording Back to Black as added to the National Recording Registry in 2025. It is a preservation record, not a revenue source.",
-        role: "primary-record"
-      },
       {
         label: "RIAA Gold & Platinum: Amy Winehouse, Back to Black",
         url: "https://www.riaa.com/gold-platinum/?ar=Amy+Winehouse&tab_active=default-award&ti=Back+to+Black",
@@ -1125,7 +1118,7 @@ export const caseStudies: CaseStudy[] = [
       },
       copyrightContext
     ],
-    documentedSourceIndexes: [0, 1, 2],
+    documentedSourceIndexes: [0, 1],
     researchCandidate: {
       slug: "amy-winehouse",
       label: "Amy Winehouse research record"
@@ -1136,15 +1129,221 @@ export const caseStudies: CaseStudy[] = [
         note: "Compare how public recognition can document scale without verifying an artist's private income."
       }
     ]
+  },
+  {
+    slug: "avicii-wake-me-up-public-record",
+    title: "Avicii's Wake Me Up: public chart and certification records do not show royalties",
+    artist: "Avicii",
+    focus: "Chart and certification context",
+    summary:
+      "Public records document a UK chart run and a U.S. certification listing for Wake Me Up. They do not disclose the agreements, rights shares, costs, or accounting needed to verify a royalty amount for Avicii or any other participant.",
+    documentedRecord: [
+      "Official Charts lists Wake Me Up by Avicii as reaching number one on the UK Official Singles Chart, with its first chart date on 27 July 2013.",
+      "RIAA's August 2015 Gold & Platinum awards list includes Wake Me Up by Avicii in its digital multi-platinum single section, with Island shown as the label."
+    ],
+    editorialReading: [
+      "The two records describe public recognition in different systems. The Official Charts page identifies a UK chart performance, while the RIAA document records a U.S. certification-listing event. They should not be combined into a worldwide sales, stream, or revenue total.",
+      "Neither source identifies who wrote the composition, who controlled the sound recording, how any participants were contracted, or what each participant received. A chart position and a certification listing can establish public scale without establishing a payment recipient."
+    ],
+    rightsQuestion:
+      "What do the public chart and certification records for Wake Me Up establish, and why do they not verify a royalty amount for Avicii or another contributor?",
+    questionAnswer:
+      "The cited sources establish a specific UK chart result and a U.S. certification-listing record. They do not provide the title-specific rights, agreement, territory, accounting-period, cost, or recipient information required to verify royalties or personal income.",
+    analysisSections: [
+      {
+        title: "Keep chart and certification records in their own contexts",
+        paragraphs: [
+          "Official Charts supplies a dated UK chart record for the recording. The RIAA document is a U.S. awards list that places the recording in a digital multi-platinum category. Both are public records of recognition, but they measure different activities in different territories and systems.",
+          "Those records make a precise claim possible: Wake Me Up achieved documented public recognition in the UK chart and U.S. certification contexts cited here. They do not create a common financial unit that can be added, converted, or assigned to an individual."
+        ]
+      },
+      {
+        title: "Why recognition does not reveal the payment path",
+        paragraphs: [
+          "A sound recording and the musical composition embodied in it are separate copyrighted works. Public chart and certification records do not state the ownership, administration, or contractual treatment of either work for this recording.",
+          "A defensible royalty claim would require title-specific information about the relevant uses, territory, period, rights holders, contractual shares, costs, and recipient. The cited sources do not disclose that accounting, so this article does not infer it."
+        ]
+      }
+    ],
+    limitations: [
+      "The cited sources do not disclose publishing shares, master ownership, distribution terms, recoupment, costs, or royalty statements for Wake Me Up.",
+      "The UK chart record and U.S. certification listing are not a complete worldwide sales, streaming, licensing, or revenue history.",
+      "This article does not estimate Avicii's income, an estate's income, catalog value, or any contributor's share."
+    ],
+    reviewedOn: "August 31, 2026",
+    sources: [
+      {
+        label: "Official Charts: Wake Me Up",
+        url: "https://www.officialcharts.com/songs/avicii-wake-me-up/",
+        note: "Documents the UK Official Singles Chart history and the July 2013 number-one record cited in this article. It is not a royalty record.",
+        role: "independent-reporting"
+      },
+      {
+        label: "RIAA: August 2015 Gold & Platinum awards list",
+        url: "https://www.riaa.com/wp-content/uploads/2015/09/August_GP.pdf",
+        note: "Lists Wake Me Up by Avicii in the August 2015 digital multi-platinum single section. The listing does not disclose payments or rights shares.",
+        role: "primary-record"
+      },
+      copyrightContext
+    ],
+    documentedSourceIndexes: [0, 1],
+    researchCandidate: {
+      slug: "avicii",
+      label: "Avicii research record"
+    },
+    relatedCaseStudies: [
+      {
+        slug: "blinding-lights-chart-longevity",
+        note: "Compare how a documented chart record can show public demand without disclosing a royalty total."
+      }
+    ]
+  },
+  {
+    slug: "bb-king-live-at-the-regal-public-record",
+    title: "B.B. King's Live at the Regal: recognition records do not disclose catalog income",
+    artist: "B.B. King",
+    focus: "Recognition context",
+    summary:
+      "Recording Academy records document public recognition for B.B. King's Live at the Regal and career record. They do not disclose catalog ownership, royalties, or payments to B.B. King or any other participant.",
+    documentedRecord: [
+      "The Recording Academy's GRAMMY Hall Of Fame list identifies Live at the Regal by B.B. King as a 1965 album inducted in 2006.",
+      "The Recording Academy's B.B. King artist page records that the album was inducted into the GRAMMY Hall Of Fame in 2006 and lists B.B. King's career GRAMMY record."
+    ],
+    editorialReading: [
+      "The two Recording Academy pages document the album's GRAMMY Hall Of Fame recognition and provide career-award context. Neither page is a financial statement.",
+      "The records help identify a particular album and its public recognition history. They do not identify the master owner, composition-rights holders, distributors, contract terms, costs, or recipients for any revenue connected to the album."
+    ],
+    rightsQuestion:
+      "What do the public recognition records for Live at the Regal establish, and what would still be needed to verify catalog income or ownership?",
+    questionAnswer:
+      "The cited sources establish that the 1965 album received GRAMMY Hall Of Fame recognition and provide career-award context. They do not disclose the rights, agreements, accounting, or recipient information required to verify catalog income or ownership.",
+    analysisSections: [
+      {
+        title: "Recognition records identify the work, not its receipts",
+        paragraphs: [
+          "The two source records agree on the artist, album title, release year, and GRAMMY Hall Of Fame recognition. That provides a clear public record of recognition for this specific album.",
+          "Recognition is not a measure of a payment. The sources do not report sales, streams, licenses, costs, or accounting periods, and they do not state which person or company received money from any use of the album."
+        ]
+      },
+      {
+        title: "Why catalog history is not an ownership history",
+        paragraphs: [
+          "An album can include sound recordings and musical compositions that follow separate rights paths. An institutional list does not replace the title-specific documentation needed to identify control or participation in those paths.",
+          "A claim about ownership or income would need public records that identify the relevant right, the period and territory of use, contractual shares, deductions, and recipient. The cited recognition records do not provide those details."
+        ]
+      }
+    ],
+    limitations: [
+      "The cited sources do not disclose master ownership, publishing ownership, contracts, recoupment, costs, or royalty statements for Live at the Regal.",
+      "GRAMMY Hall Of Fame inclusion and career-award records are not evidence of sales, streams, licensing income, or a recipient's share.",
+      "This article does not estimate B.B. King's income, an estate's income, catalog value, or any participant's payment."
+    ],
+    reviewedOn: "August 31, 2026",
+    sources: [
+      {
+        label: "Recording Academy: GRAMMY Hall Of Fame Award",
+        url: "https://www.grammy.com/awards/hall-of-fame-award/",
+        note: "Lists Live at the Regal by B.B. King as a 1965 album inducted into the GRAMMY Hall Of Fame in 2006. It does not disclose ownership or payments.",
+        role: "primary-record"
+      },
+      {
+        label: "Recording Academy: B.B. King awards and biography",
+        url: "https://www.grammy.com/artists/bb-king/14964/",
+        note: "Records the Live at the Regal Hall Of Fame recognition and B.B. King's career award history. It is not a rights or accounting record.",
+        role: "primary-record"
+      },
+      copyrightContext
+    ],
+    documentedSourceIndexes: [0, 1],
+    researchCandidate: {
+      slug: "bb-king",
+      label: "B.B. King research record"
+    },
+    relatedCaseStudies: [
+      {
+        slug: "amy-winehouse-back-to-black-public-record",
+        note: "Compare how preservation and award records can document recognition without proving revenue or ownership."
+      }
+    ]
+  },
+  {
+    slug: "black-eyed-peas-i-gotta-feeling-public-record",
+    title: "Black Eyed Peas' I Gotta Feeling: chart and certification records are not royalty statements",
+    artist: "Black Eyed Peas",
+    focus: "Chart and certification context",
+    summary:
+      "Official Charts and the RIAA database document public chart and certification context for I Gotta Feeling. They do not establish a royalty total, an ownership split, or an individual payment to any Black Eyed Peas member, writer, producer, or label.",
+    documentedRecord: [
+      "Official Charts lists I Gotta Feeling by Black Eyed Peas as reaching number one on the UK Official Singles Chart, with a first chart date of 20 June 2009 and two weeks at number one.",
+      "RIAA's public Gold & Platinum search results list separate entries for I Gotta Feeling and The E.N.D. by The Black Eyed Peas, dated 6 June 2025."
+    ],
+    editorialReading: [
+      "The Official Charts page records a UK chart result for a particular recording. The RIAA database presents U.S. certification entries for a single and an album. Those are different public records, and neither one is a statement of receipts or a complete record of worldwide activity.",
+      "I Gotta Feeling involves a recording and an underlying composition, while a group release can also involve multiple credited and contractual participants. A public chart position or certification entry cannot identify who controlled each right or how revenue was allocated."
+    ],
+    rightsQuestion:
+      "What do the public records for I Gotta Feeling establish, and why do they not verify royalties or an ownership split for the Black Eyed Peas and other participants?",
+    questionAnswer:
+      "The cited sources establish a specific UK chart result and U.S. certification-database context. They do not disclose the agreements, rights ownership, accounting, costs, or recipient information needed to verify royalties or an ownership split.",
+    analysisSections: [
+      {
+        title: "Do not merge the single and album records",
+        paragraphs: [
+          "The Official Charts source is a recording-level UK chart page for I Gotta Feeling. The RIAA search results separately identify I Gotta Feeling as a single and The E.N.D. as an album. Those labels describe different release units and should remain separate in any factual account.",
+          "The available sources support an account of documented chart and certification context. They do not support adding record types together, converting them into a revenue figure, or treating them as evidence of a participant's take-home income."
+        ]
+      },
+      {
+        title: "Why public scale does not identify a participant's share",
+        paragraphs: [
+          "Public chart and certification records do not publish the relevant agreements, such as master and composition ownership, publishing administration, producer and performer arrangements, distribution terms, or recoupment. The absence of those records is material, not a gap that can be filled with a generic split.",
+          "A verified payment claim would require title-specific information about the relevant use, territory, time period, rights holders, costs, contractual shares, and recipient. None of the cited records is an accounting statement, so this article does not make that claim."
+        ]
+      }
+    ],
+    limitations: [
+      "The cited sources do not disclose master ownership, publishing ownership, contributor agreements, distribution terms, recoupment, costs, or royalty statements.",
+      "The UK chart page and U.S. certification-database entries are not a complete worldwide record of sales, streams, licensing, or revenue.",
+      "This article does not estimate the Black Eyed Peas' income, any member's income, catalog value, or a payment to any writer, producer, or label."
+    ],
+    reviewedOn: "August 31, 2026",
+    sources: [
+      {
+        label: "Official Charts: I Gotta Feeling",
+        url: "https://www.officialcharts.com/songs/black-eyed-peas-i-gotta-feeling/",
+        note: "Documents the UK Official Singles Chart history, including the 2009 number-one result cited in this article. It is not a royalty record.",
+        role: "independent-reporting"
+      },
+      {
+        label: "RIAA Gold & Platinum: Black Eyed Peas search results",
+        url: "https://www.riaa.com/gold-%20platinum/?col=certification_date&ord=desc&se=black+eyed+peas&tab_active=default-award",
+        note: "Presents separate database entries for I Gotta Feeling and The E.N.D. The page does not disclose payments or ownership shares.",
+        role: "primary-record"
+      },
+      copyrightContext
+    ],
+    documentedSourceIndexes: [0, 1],
+    researchCandidate: {
+      slug: "black-eyed-peas",
+      label: "Black Eyed Peas research record"
+    },
+    relatedCaseStudies: [
+      {
+        slug: "all-i-want-for-christmas-is-you-seasonal-demand",
+        note: "Compare another case where public recognition supports a demand claim but not a royalty total."
+      }
+    ]
   }
 ];
+
+const toIsoDate = (value) => new Date(`${value} UTC`).toISOString().slice(0, 10);
 
 export const caseStudyPublicationHistory: Record<string, CaseStudyPublicationHistory> = Object.fromEntries(
   caseStudies.map((caseStudy) => [
     caseStudy.slug,
     {
-      publishedOn: "2026-08-18",
-      lastReviewedOn: "2026-08-19"
+      publishedOn: toIsoDate(caseStudy.reviewedOn),
+      lastReviewedOn: toIsoDate(caseStudy.reviewedOn)
     }
   ])
 );
