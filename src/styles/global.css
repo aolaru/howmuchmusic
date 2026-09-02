@@ -299,6 +299,100 @@ p {
   gap: 1.25rem;
 }
 
+.rights-map {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rights-map-step,
+.rights-lane {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.rights-map-step strong,
+.rights-lane h3 {
+  display: block;
+  margin: 0 0 0.2rem;
+  color: var(--text);
+  font-size: 1.15rem;
+}
+
+.rights-map-step p,
+.rights-lane p {
+  margin: 0;
+}
+
+.rights-map-number {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+}
+
+.rights-map-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  position: relative;
+}
+
+.rights-map-split::before {
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  width: 1px;
+  height: 0.85rem;
+  background: rgba(15, 102, 92, 0.45);
+  content: "";
+}
+
+.rights-lane {
+  display: block;
+}
+
+.rights-lane .eyebrow {
+  margin-bottom: 0.35rem;
+}
+
+.rights-lane-master {
+  border-color: rgba(15, 102, 92, 0.35);
+  background: linear-gradient(135deg, rgba(15, 102, 92, 0.13), var(--surface));
+}
+
+.rights-lane-publishing {
+  border-color: rgba(122, 77, 45, 0.35);
+  background: linear-gradient(135deg, rgba(122, 77, 45, 0.13), var(--surface));
+}
+
+.rights-map-end {
+  border-color: rgba(122, 77, 45, 0.28);
+}
+
+.rights-detail-grid,
+.seasonal-driver-grid {
+  margin-top: 1rem;
+}
+
+.rights-detail-card,
+.seasonal-driver-card {
+  min-height: 100%;
+}
+
 .card {
   border: 1px solid var(--border);
   border-radius: 20px;

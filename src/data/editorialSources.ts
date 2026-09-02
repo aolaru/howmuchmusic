@@ -107,5 +107,45 @@ export const editorialSources = {
       note: "Provides public rights-administration context for musical works.",
       role: "rights-context"
     }
+  ],
+  rightsMap: [
+    {
+      label: "U.S. Copyright Office: Sound recordings and musical compositions",
+      url: "https://www.copyright.gov/circs/circ56a.pdf",
+      note: "Explains that the recorded performance and the underlying musical work are separate copyrighted works with different rights paths.",
+      role: "primary-record"
+    },
+    {
+      label: "Spotify Loud & Clear",
+      url: "https://loudandclear.byspotify.com/",
+      note: "Provides public context on the way streaming services pay rights holders rather than one fixed amount directly to an artist.",
+      role: "primary-record"
+    },
+    {
+      label: "The Mechanical Licensing Collective",
+      url: "https://www.themlc.com/",
+      note: "Provides public context on mechanical licensing for musical works in the United States.",
+      role: "rights-context"
+    }
+  ],
+  seasonal: [
+    {
+      label: "RIAA: All I Want for Christmas Is You makes history",
+      url: "https://www.riaa.com/mariah-careys-all-i-want-for-christmas-is-you-makes-history/",
+      note: "Documents public certification context for a recurring seasonal recording; it does not disclose a royalty payment or recipient.",
+      role: "primary-record"
+    },
+    {
+      label: "Official Charts: All I Want for Christmas Is You chart history",
+      url: "https://www.officialcharts.com/songs/mariah-carey-all-i-want-for-christmas-is-you/",
+      note: "Provides public UK chart-history context for a seasonal recording. Chart recurrence does not establish artist-side income.",
+      role: "independent-reporting"
+    },
+    {
+      label: "U.S. Copyright Office: Sound recordings and musical compositions",
+      url: "https://www.copyright.gov/circs/circ56a.pdf",
+      note: "Explains why recurring recording activity can involve separate sound-recording and musical-work rights holders.",
+      role: "primary-record"
+    }
   ]
 } satisfies Record<string, EditorialSource[]>;

@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EditorialSources from "../../components/EditorialSources.astro";
+import { editorialSources } from "../../data/editorialSources";
+
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout
+  title="Why Seasonal Songs Return Every Year | How Much Music"
+  description="What recurring holiday demand can show about a song's public life, and why it does not reveal a private royalty total or recipient."
+  type="article"
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Seasonal Demand</p>
+      <h1>Why seasonal songs return every year</h1>
+      <p class="page-updated">Published September 2, 2026</p>
+      <p>
+        A seasonal song can regain attention because a predictable cultural moment makes it useful
+        again. That recurrence is visible in some public chart and certification records, but it is
+        not a public royalty statement.
+      </p>
+    </div>
+    <div class="hero-panel" aria-label="The key distinction">
+      <p class="eyebrow">Key Distinction</p>
+      <strong>Demand</strong>
+      <span>can be public; the eventual recipient and amount usually are not</span>
+      <a class="home-action-link" href="#public-record">Read the public record</a>
+    </div>
+  </section>
+
+  <nav class="page-jump-list" aria-label="On this page">
+    <a href="#return">Why songs return</a>
+    <a href="#public-record">What the record shows</a>
+    <a href="#rights">Why rights still matter</a>
+    <a href="#limits">Limits</a>
+  </nav>
+
+  <section id="return" aria-labelledby="return-title">
+    <p class="eyebrow">Recurring Use</p>
+    <h2 id="return-title">A calendar moment can make a catalog recording useful again</h2>
+    <div class="editorial-grid seasonal-driver-grid">
+      <article class="card seasonal-driver-card">
+        <div class="artist-card-body">
+          <p class="eyebrow">1. Recognition</p>
+          <h3>The song is easy to find</h3>
+          <p>Familiar titles, playlists, radio programming, and social sharing can make a recording easy to rediscover at the relevant time of year.</p>
+        </div>
+      </article>
+      <article class="card seasonal-driver-card">
+        <div class="artist-card-body">
+          <p class="eyebrow">2. Repeatable Moment</p>
+          <h3>The context returns</h3>
+          <p>A holiday, annual event, or other recurring occasion can renew the reason listeners, programmers, and editors reach for a song.</p>
+        </div>
+      </article>
+      <article class="card seasonal-driver-card">
+        <div class="artist-card-body">
+          <p class="eyebrow">3. Multiple Uses</p>
+          <h3>The song can travel</h3>
+          <p>Streaming is one route. Broadcast, retail, user-made videos, and audiovisual use may create other forms of public visibility or licensed activity.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="public-record" aria-labelledby="public-record-title">
+    <p class="eyebrow">Evidence Boundary</p>
+    <h2 id="public-record-title">What public seasonal-demand records can show</h2>
+    <p>
+      Chart history and certification announcements can document repeated public attention. They can
+      support a narrow conclusion that a recording has remained culturally and commercially visible.
+    </p>
+    <ul class="meta-list">
+      <li>Recurring chart activity can support discussion of public demand during a particular period.</li>
+      <li>Certification context can support discussion of documented industry milestones where the certifying body publishes them.</li>
+      <li>Public platform or retailer placement can support identity and availability context, not an undisclosed revenue amount.</li>
+      <li>None of these records identifies the amount paid to any artist, writer, label, publisher, estate, or catalog buyer.</li>
+    </ul>
+  </section>
+
+  <section id="rights" aria-labelledby="rights-title">
+    <p class="eyebrow">Rights Context</p>
+    <h2 id="rights-title">Why recurring attention is not the same as artist income</h2>
+    <p>
+      A public resurgence can create activity around both the sound recording and the underlying
+      musical work. Those are separate copyrighted works, and their ownership and administration can
+      differ. The performer associated with the recording may not control every relevant interest.
+    </p>
+    <p>
+      Catalog transactions, publishing agreements, label arrangements, and private recoupment terms
+      can further change who receives value. That is why seasonal popularity is useful evidence of
+      demand, while a personal-income claim needs records that public charts and certifications do not provide.
+    </p>
+    <div class="related-link-row">
+      <a href={`${baseUrl}insights/music-rights-map/`}>Open the Music Rights Map</a>
+      <a href={`${baseUrl}insights/catalog-ownership/`}>Read catalog ownership context</a>
+    </div>
+  </section>
+
+  <section id="limits" class="editorial-basis-card" aria-labelledby="seasonal-limits-title">
+    <div class="editorial-basis-heading">
+      <p class="eyebrow">Limits</p>
+      <h2 id="seasonal-limits-title">How to read seasonal-song claims carefully</h2>
+      <p>
+        A song's annual visibility can be meaningful without proving a fixed annual payment. Use
+        public demand evidence to understand why a recording remains active, then look separately at
+        the ownership and rights context before drawing conclusions about who benefits.
+      </p>
+    </div>
+    <div class="related-link-row">
+      <a href={`${baseUrl}insights/evergreen-songs/`}>Read the evergreen-song guide</a>
+      <a href={`${baseUrl}case-studies/`}>Browse source-backed case studies</a>
+      <a href={`${baseUrl}contact/`}>Suggest a public source</a>
+    </div>
+  </section>
+
+  <EditorialSources sources={editorialSources.seasonal} title="Seasonal demand and rights background" />
+</BaseLayout>

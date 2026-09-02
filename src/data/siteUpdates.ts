@@ -35,6 +35,17 @@ export const updateHighlights = [
 // This is a curated visitor-facing record, not a raw export of every repository commit.
 export const recentSiteUpdates: SiteUpdate[] = [
   {
+    date: "September 2, 2026",
+    kind: "New",
+    title: "Music Rights Map and seasonal-demand guide published",
+    detail:
+      "Added two source-led explainers: a visual guide to the recording and musical-work rights paths, and a guide to what recurring seasonal chart and certification context can, and cannot, show about a song's value.",
+    links: [
+      { label: "Open the Music Rights Map", href: "/insights/music-rights-map/" },
+      { label: "Read the seasonal-demand guide", href: "/insights/seasonal-songs/" }
+    ]
+  },
+  {
     date: "August 31, 2026",
     kind: "New",
     title: "Three source-backed music-rights case studies published",

@@ -1,0 +1,142 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EditorialSources from "../../components/EditorialSources.astro";
+import { editorialSources } from "../../data/editorialSources";
+
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout
+  title="Music Rights Map | How Much Music"
+  description="A visual guide to how listener activity reaches separate recording and musical-work rights lanes, and why that is not the same as artist income."
+  type="article"
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Visual Explainer</p>
+      <h1>Follow the music rights map</h1>
+      <p class="page-updated">Published September 2, 2026</p>
+      <p>
+        A play, sale, or licence can create activity around more than one right. This guide follows
+        the public, high-level path without pretending that it reveals a particular artist's contract
+        or payment.
+      </p>
+    </div>
+    <div class="hero-panel" aria-label="How to use this guide">
+      <p class="eyebrow">Use This Map</p>
+      <strong>2 rights</strong>
+      <span>usually sit behind one familiar song recording</span>
+      <a class="home-action-link" href="#rights-map">Follow the path</a>
+    </div>
+  </section>
+
+  <nav class="page-jump-list" aria-label="On this page">
+    <a href="#rights-map">Rights path</a>
+    <a href="#two-works">Two works</a>
+    <a href="#what-changes">What changes the outcome</a>
+    <a href="#limits">Limits</a>
+  </nav>
+
+  <section id="rights-map" aria-labelledby="rights-map-title">
+    <p class="eyebrow">The Path</p>
+    <h2 id="rights-map-title">One use can start several separate money paths</h2>
+    <p>
+      The exact route varies by territory, service, licence, and contract. This is a reader's map of
+      the broad structure, not a statement of a universal payout sequence.
+    </p>
+    <ol class="rights-map">
+      <li class="rights-map-step rights-map-start">
+        <span class="rights-map-number">1</span>
+        <div>
+          <strong>Listener activity</strong>
+          <p>A stream, sale, broadcast, or audiovisual use creates a recorded use of music.</p>
+        </div>
+      </li>
+      <li class="rights-map-step">
+        <span class="rights-map-number">2</span>
+        <div>
+          <strong>Service or licensee</strong>
+          <p>The platform, broadcaster, venue, or production company applies its relevant licence and payment rules.</p>
+        </div>
+      </li>
+      <li class="rights-map-split" aria-label="The rights path separates into recording and musical-work lanes">
+        <div class="rights-lane rights-lane-master">
+          <p class="eyebrow">Recording Lane</p>
+          <h3>Master recording</h3>
+          <p>The recorded performance. Its owner may be an artist, label, estate, or catalog buyer.</p>
+        </div>
+        <div class="rights-lane rights-lane-publishing">
+          <p class="eyebrow">Songwriting Lane</p>
+          <h3>Musical work</h3>
+          <p>The composition: lyrics and music. Its interests can include writers and publishers.</p>
+        </div>
+      </li>
+      <li class="rights-map-step rights-map-end">
+        <span class="rights-map-number">3</span>
+        <div>
+          <strong>Rights holders and contractual participants</strong>
+          <p>Payments can be divided by ownership, administration, recoupment, and private deal terms that public records rarely disclose.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="two-works" aria-labelledby="two-works-title">
+    <p class="eyebrow">The Core Distinction</p>
+    <h2 id="two-works-title">A familiar recording usually contains two copyrighted works</h2>
+    <div class="editorial-grid rights-detail-grid">
+      <article class="card rights-detail-card">
+        <div class="artist-card-body">
+          <p class="eyebrow">Master</p>
+          <h3>Who controls the recording?</h3>
+          <p>
+            The master is the recorded performance a listener hears. A public release page may identify
+            a label or recording credit, but it does not necessarily disclose the current owner or every
+            person entitled to a share.
+          </p>
+        </div>
+      </article>
+      <article class="card rights-detail-card">
+        <div class="artist-card-body">
+          <p class="eyebrow">Publishing</p>
+          <h3>Who controls the composition?</h3>
+          <p>
+            The musical work is the underlying song. Writers, publishers, administrators, and other
+            participants can have different roles from the people associated with the master recording.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="what-changes" aria-labelledby="what-changes-title">
+    <p class="eyebrow">Reading The Map</p>
+    <h2 id="what-changes-title">What can change who receives value</h2>
+    <ul class="meta-list">
+      <li><strong>Ownership:</strong> a master or publishing interest may have been sold, transferred, or inherited.</li>
+      <li><strong>Role:</strong> a performer who also writes may participate in different rights lanes than a performer who does not.</li>
+      <li><strong>Use:</strong> streaming, radio, a download, and an audiovisual placement can involve different licensing arrangements.</li>
+      <li><strong>Territory and agreement:</strong> local rules, administrators, advances, and recoupment terms can affect the final distribution.</li>
+    </ul>
+  </section>
+
+  <section id="limits" class="editorial-basis-card" aria-labelledby="rights-map-limits-title">
+    <div class="editorial-basis-heading">
+      <p class="eyebrow">Important Limits</p>
+      <h2 id="rights-map-limits-title">What this map does not show</h2>
+      <p>
+        Public documentation can explain the structure. It usually cannot verify a private split,
+        recoupment balance, administration agreement, sync fee, or personal take-home amount.
+      </p>
+    </div>
+    <div class="related-link-row">
+      <a href={`${baseUrl}insights/streaming-payouts/`}>Read streaming payout context</a>
+      <a href={`${baseUrl}insights/catalog-ownership/`}>Read catalog ownership context</a>
+      <a href={`${baseUrl}contact/`}>Suggest a public source</a>
+    </div>
+  </section>
+
+  <EditorialSources sources={editorialSources.rightsMap} title="Rights and payment-path background" />
+</BaseLayout>
