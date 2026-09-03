@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { caseStudies } from "../data/caseStudies";
+import type { EditorialSource } from "../data/editorialSources";
+
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+type EvidenceLibraryEntry = {
+  source: EditorialSource;
+  studies: Array<{ slug: string; title: string }>;
+};
+
+const sourceLibrary = Array.from(
+  caseStudies
+    .reduce((entries, study) => {
+      for (const source of study.sources) {
+        const existing = entries.get(source.url);
+        if (existing) {
+          existing.studies.push({ slug: study.slug, title: study.title });
+        } else {
+          entries.set(source.url, {
+            source,
+            studies: [{ slug: study.slug, title: study.title }]
+          });
+        }
+      }
+      return entries;
+    }, new Map<string, EvidenceLibraryEntry>())
+    .values()
+).sort((left, right) => left.source.label.localeCompare(right.source.label));
+
+const sourceRoleGroups = [
+  {
+    id: "primary-record",
+    label: "Primary records",
+    detail:
+      "Official charts, certification bodies, rights organisations, and other first-party records. They support the specific public facts described beside each link, not private accounting."
+  },
+  {
+    id: "independent-reporting",
+    label: "Independent reporting",
+    detail:
+      "Published reporting that provides public context around a chart event, historical record, or industry milestone. The article states the scope of the reporting rather than extending it into a financial claim."
+  },
+  {
+    id: "rights-context",
+    label: "Rights and administration context",
+    detail:
+      "Copyright and licensing sources that explain general music-rights structures. They do not identify the private agreements for a particular song or artist."
+  }
+] as const;
+
+const sourceCountByRole = Object.fromEntries(
+  sourceRoleGroups.map((group) => [
+    group.id,
+    sourceLibrary.filter((entry) => entry.source.role === group.id).length
+  ])
+);
+---
+
+<BaseLayout
+  title="Evidence Library | How Much Music"
+  description="A public index of the source types and links used in How Much Music case studies, with the limits of each kind of evidence made clear."
+  type="article"
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Evidence Library</p>
+      <h1>See the public record behind the reporting.</h1>
+      <p>
+        This library lists the external sources used by published case studies and the exact context
+        they support. It is not a list of royalty statements, contracts, or personal-income records.
+      </p>
+    </div>
+    <div class="hero-panel" aria-label="Evidence library scope">
+      <p class="eyebrow">Current Coverage</p>
+      <div class="hero-stat-pill hero-stat-pill-primary">
+        <strong>{sourceLibrary.length}</strong>
+        <span>unique public source links</span>
+      </div>
+      <div class="hero-stat-pill">
+        <strong>{caseStudies.length}</strong>
+        <span>published case studies</span>
+      </div>
+    </div>
+  </section>
+
+  <nav class="page-jump-list" aria-label="Evidence library sections">
+    {sourceRoleGroups.map((group) => <a href={`#${group.id}`}>{group.label}</a>)}
+    <a href={`${baseUrl}editorial-policy/`}>Editorial policy</a>
+  </nav>
+
+  <section class="editorial-basis-card" aria-labelledby="evidence-reading-title">
+    <div class="editorial-basis-heading">
+      <p class="eyebrow">How To Read It</p>
+      <h2 id="evidence-reading-title">A source can support context without proving a payout</h2>
+      <p>
+        Every source has a narrow job. A chart page can document public demand; a certification body
+        can document a certification; a copyright source can explain a rights distinction. None of
+        those records automatically identifies a royalty recipient or amount.
+      </p>
+    </div>
+    <div class="editorial-basis-grid">
+      <div class="editorial-basis-item"><strong>Read the note</strong><span>Each entry states the narrow context the link supports.</span></div>
+      <div class="editorial-basis-item"><strong>Read the linked articles</strong><span>Every entry lists the case studies that use it.</span></div>
+      <div class="editorial-basis-item"><strong>Check the limits</strong><span>Case studies state what the public evidence does not establish.</span></div>
+      <div class="editorial-basis-item"><strong>Suggest a correction</strong><span>Send a better public source through the contact page.</span></div>
+    </div>
+  </section>
+
+  {sourceRoleGroups.map((group) => {
+    const entries = sourceLibrary.filter((entry) => entry.source.role === group.id);
+    return (
+      <section id={group.id} aria-labelledby={`${group.id}-title`}>
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">{sourceCountByRole[group.id]} sources</p>
+            <h2 id={`${group.id}-title`}>{group.label}</h2>
+          </div>
+        </div>
+        <p class="results-note">{group.detail}</p>
+        <div class="evidence-library-grid">
+          {entries.map((entry) => (
+            <article class="reference-item evidence-library-item">
+              <p class="reference-category">{entry.source.role.replaceAll("-", " ")}</p>
+              <h3><a href={entry.source.url} rel="noreferrer" target="_blank">{entry.source.label}</a></h3>
+              <p>{entry.source.note}</p>
+              <div class="evidence-study-links">
+                <strong>Used in</strong>
+                {entry.studies.map((study) => (
+                  <a href={`${baseUrl}case-studies/${study.slug}/`}>{study.title}</a>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="editorial-basis-card" aria-labelledby="evidence-next-title">
+    <div class="editorial-basis-heading">
+      <p class="eyebrow">Next Step</p>
+      <h2 id="evidence-next-title">Use evidence before drawing a financial conclusion</h2>
+      <p>
+        Start with the case study that matches your question, then read the source notes and limits.
+        If a public source is missing or outdated, the corrections route is the appropriate place to submit it.
+      </p>
+    </div>
+    <div class="related-link-row">
+      <a href={`${baseUrl}case-studies/`}>Browse case studies</a>
+      <a href={`${baseUrl}insights/music-rights-map/`}>Open the Music Rights Map</a>
+      <a href={`${baseUrl}contact/`}>Suggest a public source</a>
+    </div>
+  </section>
+</BaseLayout>

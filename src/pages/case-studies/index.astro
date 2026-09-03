@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { caseStudies } from "../../data/caseStudies";
+import { caseStudyTopicDefinitions, caseStudyTopicsBySlug } from "../../data/caseStudyTopics";
 
 const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -85,6 +86,35 @@ const popularQuestions = [
     </div>
   </section>
 
+  <section class="case-study-filter-section" aria-labelledby="case-study-topics-title">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">Browse By Topic</p>
+        <h2 id="case-study-topics-title">Find the rights question you want to understand</h2>
+      </div>
+      <a class="home-action-link" href={`${baseUrl}evidence/`}>Open Evidence Library</a>
+    </div>
+    <p class="results-note">
+      Topics describe the question examined in each article. They do not imply a financial conclusion about the artist or song.
+    </p>
+    <div class="case-study-filter-bar" data-case-study-filters aria-label="Filter case studies by topic">
+      <button class="case-study-filter-button is-active" type="button" data-case-study-filter="all" aria-pressed="true">
+        All studies <span>{caseStudies.length}</span>
+      </button>
+      {caseStudyTopicDefinitions.map((topic) => {
+        const count = caseStudies.filter((study) => caseStudyTopicsBySlug[study.slug]?.includes(topic.id)).length;
+        return (
+          <button class="case-study-filter-button" type="button" data-case-study-filter={topic.id} aria-pressed="false">
+            {topic.label} <span>{count}</span>
+          </button>
+        );
+      })}
+    </div>
+    <p class="case-study-filter-summary" data-case-study-filter-summary aria-live="polite">
+      Showing all {caseStudies.length} published case studies.
+    </p>
+  </section>
+
   <section aria-labelledby="case-studies-title">
     <div class="section-heading-row">
       <div>
@@ -96,9 +126,9 @@ const popularQuestions = [
     <p class="results-note">
       Each case identifies its evidence, explains the editorial reading, and states what the public record does not show.
     </p>
-    <div class="card-grid case-study-grid">
+    <div class="card-grid case-study-grid" id="case-studies-grid">
       {caseStudies.map((caseStudy) => (
-        <article class="card case-study-card">
+        <article class="card case-study-card" data-case-study-topics={caseStudyTopicsBySlug[caseStudy.slug]?.join(" ") ?? ""}>
           <div class="artist-card-body">
             <p class="eyebrow">{caseStudy.focus}</p>
             <h3><a href={`${baseUrl}case-studies/${caseStudy.slug}/`}>{caseStudy.title}</a></h3>
@@ -127,4 +157,41 @@ const popularQuestions = [
       <a href={`${baseUrl}contact/`}>Suggest a public source</a>
     </div>
   </section>
+
+  <script is:inline>
+    const filterBar = document.querySelector("[data-case-study-filters]");
+    const filterButtons = Array.from(document.querySelectorAll("[data-case-study-filter]"));
+    const caseStudyCards = Array.from(document.querySelectorAll("[data-case-study-topics]"));
+    const filterSummary = document.querySelector("[data-case-study-filter-summary]");
+
+    if (filterBar && filterSummary) {
+      filterBar.addEventListener("click", (event) => {
+        const target = event.target instanceof Element
+          ? event.target.closest("[data-case-study-filter]")
+          : null;
+        if (!(target instanceof HTMLButtonElement)) return;
+
+        const topic = target.dataset.caseStudyFilter ?? "all";
+        let visibleCount = 0;
+
+        for (const card of caseStudyCards) {
+          const topics = card.getAttribute("data-case-study-topics")?.split(" ") ?? [];
+          const isVisible = topic === "all" || topics.includes(topic);
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        }
+
+        for (const button of filterButtons) {
+          const isActive = button === target;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        }
+
+        const label = topic === "all"
+          ? "all"
+          : target.textContent?.replace(/\s+\d+\s*$/, "").trim() ?? "selected";
+        filterSummary.textContent = `Showing ${visibleCount} ${label} case stud${visibleCount === 1 ? "y" : "ies"}.`;
+      });
+    }
+  </script>
 </BaseLayout>

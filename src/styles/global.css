@@ -1513,6 +1513,116 @@ mark {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.case-study-filter-section {
+  margin: 2.5rem 0;
+}
+
+.case-study-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.case-study-filter-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.5rem;
+  padding: 0.52rem 0.78rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.case-study-filter-button span {
+  display: grid;
+  place-items: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: rgba(23, 27, 31, 0.08);
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.case-study-filter-button:hover,
+.case-study-filter-button:focus-visible,
+.case-study-filter-button.is-active {
+  border-color: rgba(15, 102, 92, 0.38);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.case-study-filter-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.case-study-filter-button.is-active span {
+  background: var(--accent);
+  color: #fff;
+}
+
+.case-study-filter-summary {
+  margin: 0.9rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.evidence-library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.evidence-library-item {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding: 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.evidence-library-item h3,
+.evidence-library-item p {
+  margin: 0;
+}
+
+.evidence-library-item h3 {
+  font-size: 1.15rem;
+}
+
+.evidence-study-links {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border);
+}
+
+.evidence-study-links strong {
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.evidence-study-links a {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
 .case-study-card {
   display: flex;
 }
@@ -2530,6 +2640,7 @@ mark {
   .trust-points,
   .source-snapshot-list,
   .editorial-basis-grid,
+  .evidence-library-grid,
   .case-study-grid {
     grid-template-columns: 1fr;
   }

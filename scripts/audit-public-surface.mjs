@@ -7,6 +7,7 @@ const alwaysIndex = new Set([
   "/about/",
   "/author/andrei-olaru/",
   "/contact/",
+  "/evidence/",
   "/editorial-policy/",
   "/insights/",
   "/privacy/"

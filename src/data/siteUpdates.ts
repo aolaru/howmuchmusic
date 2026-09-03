@@ -35,6 +35,17 @@ export const updateHighlights = [
 // This is a curated visitor-facing record, not a raw export of every repository commit.
 export const recentSiteUpdates: SiteUpdate[] = [
   {
+    date: "September 3, 2026",
+    kind: "New",
+    title: "Evidence Library and case-study topics added",
+    detail:
+      "Published a browsable index of the public source links used by case studies, including the scope and limits of each source role. Case studies can now be filtered by their editorial question, such as seasonal demand, rights, film, recognition, and public earnings questions.",
+    links: [
+      { label: "Open Evidence Library", href: "/evidence/" },
+      { label: "Browse case studies", href: "/case-studies/" }
+    ]
+  },
+  {
     date: "September 2, 2026",
     kind: "New",
     title: "Music Rights Map and seasonal-demand guide published",

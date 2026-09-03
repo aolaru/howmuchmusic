@@ -10,6 +10,7 @@ function shouldIncludeInSitemap(page) {
     "/",
     "/about/",
     "/contact/",
+    "/evidence/",
     "/privacy/",
     "/editorial-policy/",
     "/author/andrei-olaru/",
