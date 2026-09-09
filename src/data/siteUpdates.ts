@@ -41,7 +41,7 @@ export const recentSiteUpdates: SiteUpdate[] = [
     detail:
       "Moved the project into maintenance mode with no scheduled publishing cadence. Added public software and content licenses, contributor and security guidance, a visible archive status, and removed advertising and Google Analytics while retaining aggregate Cloudflare analytics.",
     links: [
-      { label: "View the source", href: "https://github.com/aolaru/artistmoney" },
+      { label: "View the source", href: "https://github.com/aolaru/howmuchmusic" },
       { label: "Read about the archive", href: "/about/" }
     ]
   },

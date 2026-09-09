@@ -7,7 +7,7 @@
   "homepage": "https://howmuchmusic.com/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aolaru/artistmoney.git"
+    "url": "git+https://github.com/aolaru/howmuchmusic.git"
   },
   "type": "module",
   "scripts": {
