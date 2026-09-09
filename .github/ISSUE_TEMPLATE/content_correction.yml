@@ -1,0 +1,42 @@
+name: Content correction
+description: Propose a factual, source, attribution, or rights correction.
+title: "[Correction]: "
+labels:
+  - content
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      placeholder: https://howmuchmusic.com/...
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current statement or issue
+      description: Quote only the minimum text needed to identify the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+      description: Explain what should change and why.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Public source
+      description: Prefer an official record, primary source, or directly relevant reporting.
+      placeholder: https://...
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Contribution terms
+      options:
+        - label: I have the right to share this material and understand that accepted original contributions use the repository licenses.
+          required: true

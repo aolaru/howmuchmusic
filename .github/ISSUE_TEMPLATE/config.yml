@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Private security report
+    url: mailto:info@howmuchmusic.com
+    about: Report vulnerabilities privately rather than opening a public issue.
+  - name: Image or rights concern
+    url: https://howmuchmusic.com/contact/
+    about: Use the contact details for a concern that should not initially be public.

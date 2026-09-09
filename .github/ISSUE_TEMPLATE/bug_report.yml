@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible problem with the website or repository.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve the open-source archive. Please keep the report focused and reproducible.
+  - type: input
+    id: page
+    attributes:
+      label: Affected page or file
+      description: Link to the live page or name the repository file.
+      placeholder: https://howmuchmusic.com/...
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Explain what happened and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include browser, device, commands, or other details when relevant.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: I have not included private or confidential information.
+          required: true

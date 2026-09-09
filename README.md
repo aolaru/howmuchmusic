@@ -12,7 +12,7 @@ Catalog profiles are research records, not verified royalty reporting. Published
 
 ## Technology
 
-- Astro 6
+- Astro 7
 - TypeScript
 - Static deployment through GitHub Pages
 - Cloudflare Web Analytics for aggregate traffic measurement
