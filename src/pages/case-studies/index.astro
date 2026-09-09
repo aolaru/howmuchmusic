@@ -165,10 +165,9 @@ const popularQuestions = [
     const filterSummary = document.querySelector("[data-case-study-filter-summary]");
 
     if (filterBar && filterSummary) {
-      filterBar.addEventListener("click", (event) => {
-        const target = event.target instanceof Element
-          ? event.target.closest("[data-case-study-filter]")
-          : null;
+      const selectTopic = (requestedTopic, updateLocation) => {
+        const target = filterButtons.find((button) => button.dataset.caseStudyFilter === requestedTopic)
+          ?? filterButtons.find((button) => button.dataset.caseStudyFilter === "all");
         if (!(target instanceof HTMLButtonElement)) return;
 
         const topic = target.dataset.caseStudyFilter ?? "all";
@@ -191,7 +190,28 @@ const popularQuestions = [
           ? "all"
           : target.textContent?.replace(/\s+\d+\s*$/, "").trim() ?? "selected";
         filterSummary.textContent = `Showing ${visibleCount} ${label} case stud${visibleCount === 1 ? "y" : "ies"}.`;
+
+        if (updateLocation) {
+          const url = topic === "all"
+            ? window.location.pathname
+            : `${window.location.pathname}#${topic}`;
+          window.history.replaceState(null, "", url);
+        }
+      };
+
+      filterBar.addEventListener("click", (event) => {
+        const target = event.target instanceof Element
+          ? event.target.closest("[data-case-study-filter]")
+          : null;
+        if (target instanceof HTMLButtonElement) {
+          selectTopic(target.dataset.caseStudyFilter ?? "all", true);
+        }
       });
+
+      window.addEventListener("hashchange", () => {
+        selectTopic(window.location.hash.slice(1) || "all", false);
+      });
+      selectTopic(window.location.hash.slice(1) || "all", false);
     }
   </script>
 </BaseLayout>

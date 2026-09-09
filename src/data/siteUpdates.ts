@@ -35,6 +35,28 @@ export const updateHighlights = [
 // This is a curated visitor-facing record, not a raw export of every repository commit.
 export const recentSiteUpdates: SiteUpdate[] = [
   {
+    date: "September 9, 2026",
+    kind: "Release",
+    title: "How Much Music became an open-source archive",
+    detail:
+      "Moved the project into maintenance mode with no scheduled publishing cadence. Added public software and content licenses, contributor and security guidance, a visible archive status, and removed advertising and Google Analytics while retaining aggregate Cloudflare analytics.",
+    links: [
+      { label: "View the source", href: "https://github.com/aolaru/artistmoney" },
+      { label: "Read about the archive", href: "/about/" }
+    ]
+  },
+  {
+    date: "September 5, 2026",
+    kind: "Updated",
+    title: "Homepage now leads with public-record music research",
+    detail:
+      "Reframed the homepage around source-backed questions, rights context, and evidence rather than implied estimate discovery. Added direct routes into the case-study research areas and updated the About page to reflect the site's editorial focus.",
+    links: [
+      { label: "Browse research questions", href: "/case-studies/" },
+      { label: "Read about the site", href: "/about/" }
+    ]
+  },
+  {
     date: "September 3, 2026",
     kind: "New",
     title: "Evidence Library and case-study topics added",

@@ -259,18 +259,8 @@ const searchIndexUrl = `${baseUrl}search-index.json`;
 
         if (!form || !input || filterButtons.length === 0) return;
 
-        const trackSearchSubmit = () => {
-          const searchTerm = input.value.trim();
-          if (!searchTerm || typeof window.hmmTrackEvent !== "function") return;
-          window.hmmTrackEvent("search_submitted", {
-            search_term: searchTerm,
-            search_location: "search_page"
-          });
-        };
-
         form.addEventListener("submit", (event) => {
           event.preventDefault();
-          trackSearchSubmit();
           updateQueryParam("q", input.value.trim());
           renderResults();
         });
@@ -278,23 +268,9 @@ const searchIndexUrl = `${baseUrl}search-index.json`;
         input.addEventListener("keydown", (event) => {
           if (event.key === "Enter") {
             event.preventDefault();
-            trackSearchSubmit();
             updateQueryParam("q", input.value.trim());
             renderResults();
           }
-        });
-
-        root.addEventListener("click", (event) => {
-          if (!(event.target instanceof Element)) return;
-          const link = event.target.closest("[data-search-result-link]");
-          if (!link || typeof window.hmmTrackEvent !== "function") return;
-          window.hmmTrackEvent("search_result_opened", {
-            search_location: "search_page",
-            result_type: link.dataset.resultType ?? "",
-            result_title: link.dataset.resultTitle ?? "",
-            result_url: link.dataset.resultUrl ?? "",
-            result_reviewed: link.dataset.resultReviewed ?? ""
-          });
         });
 
         filterButtons.forEach((button) => {

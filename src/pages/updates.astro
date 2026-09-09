@@ -7,6 +7,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const allSiteUpdates = [...recentSiteUpdates, ...archivedSiteUpdates];
+const updateHref = (href: string) =>
+  href.startsWith("http://") || href.startsWith("https://")
+    ? href
+    : `${baseUrl}${href.slice(1)}`;
+const isExternalHref = (href: string) => href.startsWith("http://") || href.startsWith("https://");
 const kindCounts = Object.fromEntries(
   ["Release", "New", "Updated", "Fixed"].map((kind) => [
     kind,
@@ -120,7 +125,15 @@ const jsonLd = {
             <p>{update.detail}</p>
             {update.links && (
               <div class="related-link-row changelog-links" aria-label={`${update.title} links`}>
-                {update.links.map((link) => <a href={`${baseUrl}${link.href.slice(1)}`}>{link.label}</a>)}
+                {update.links.map((link) => (
+                  <a
+                    href={updateHref(link.href)}
+                    rel={isExternalHref(link.href) ? "noreferrer" : undefined}
+                    target={isExternalHref(link.href) ? "_blank" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </div>
             )}
           </div>

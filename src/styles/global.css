@@ -98,6 +98,26 @@ a {
   display: none;
 }
 
+.archive-banner {
+  border-bottom: 1px solid rgba(31, 111, 101, 0.24);
+  background: rgba(220, 235, 228, 0.72);
+  color: var(--text);
+}
+
+.archive-banner .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.archive-banner a {
+  font-weight: 700;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2456,6 +2476,16 @@ mark {
     align-items: center;
     gap: 0.65rem 0.85rem;
     padding: 0.7rem 0;
+  }
+
+  .archive-banner .container {
+    display: block;
+    padding: 0.6rem 0;
+  }
+
+  .archive-banner span,
+  .archive-banner a {
+    margin-left: 0.25rem;
   }
 
   .brand {

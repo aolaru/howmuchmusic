@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { caseStudies } from "../data/caseStudies";
+import { caseStudyTopicDefinitions } from "../data/caseStudyTopics";
 
 const baseUrl = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL
@@ -28,20 +29,43 @@ const explainers = [
     detail: "How masters, publishing, and catalog transfers affect who is paid."
   }
 ];
+
+const researchAreas = [
+  {
+    topic: "seasonal",
+    title: "Seasonal demand",
+    detail: "Why a recurring cultural moment can bring an older recording back into public attention."
+  },
+  {
+    topic: "demand",
+    title: "Chart and long-tail demand",
+    detail: "How public chart records can show durable attention without revealing a royalty total."
+  },
+  {
+    topic: "rights",
+    title: "Rights and ownership",
+    detail: "Why the recording, the composition, and their owners should be read as separate questions."
+  },
+  {
+    topic: "film",
+    title: "Film and songwriting",
+    detail: "How film and soundtrack context can be documented without guessing at private licensing terms."
+  }
+];
 ---
 
 <BaseLayout
-  title="How Much Music | Music Rights and Catalog Research"
-  description="Source-led explainers about music rights, catalog ownership, streaming, and long-term music value."
+  title="How Much Music | The Public Record Behind Music Money"
+  description="Source-led reporting on music rights, ownership, chart demand, and the limits of public income claims."
 >
   <section class="hero home-hero">
     <div class="hero-copy">
       <p class="eyebrow">How Much Music</p>
-      <h1>Find the music question, then check the evidence.</h1>
+      <h1>The public record behind music money.</h1>
       <p>
-        How Much Music publishes source-led explainers about streaming, catalog ownership, and
-        licensing. Search a song or artist, read the published research, then use the catalog for
-        basic context.
+        How Much Music investigates what public charts, rights sources, and industry records can
+        establish about a song's financial life. Start with a published question, then check the
+        evidence and its limits.
       </p>
       <ul class="hero-proof-list" aria-label="Site approach">
         <li><strong>Sources</strong><span>explained on every editorial page</span></li>
@@ -52,22 +76,22 @@ const explainers = [
 
     <div class="hero-panel home-search-panel" aria-label="Primary homepage actions">
       <p class="eyebrow">Start Here</p>
-      <h2>Three clear ways to use the site.</h2>
+      <h2>Start with the question, not a guessed number.</h2>
       <div class="home-primary-actions">
         <article class="home-primary-action">
-          <p class="eyebrow">1. Find Music</p>
-          <h3>Search an artist or song</h3>
-          <a class="home-action-link" href={`${baseUrl}search/`}>Search the catalog</a>
+          <p class="eyebrow">1. Published Research</p>
+          <h3>Read a source-backed case study</h3>
+          <a class="home-action-link" href={`${baseUrl}case-studies/`}>Browse case studies</a>
         </article>
         <article class="home-primary-action">
-          <p class="eyebrow">2. Published Research</p>
-          <h3>Read source-backed answers</h3>
-          <a class="home-action-link" href={`${baseUrl}case-studies/`}>Read case studies</a>
+          <p class="eyebrow">2. Rights Context</p>
+          <h3>Follow the money path</h3>
+          <a class="home-action-link" href={`${baseUrl}insights/music-rights-map/`}>Open the rights map</a>
         </article>
         <article class="home-primary-action">
-          <p class="eyebrow">3. Method</p>
-          <h3>Learn how evidence is read</h3>
-          <a class="home-action-link" href={`${baseUrl}insights/methodology/`}>Read methodology</a>
+          <p class="eyebrow">3. Evidence</p>
+          <h3>See which sources support a claim</h3>
+          <a class="home-action-link" href={`${baseUrl}evidence/`}>Open Evidence Library</a>
         </article>
       </div>
     </div>
@@ -92,6 +116,31 @@ const explainers = [
             <h3><a href={`${baseUrl}case-studies/${caseStudy.slug}/`}>{caseStudy.title}</a></h3>
             <p class="card-byline">{caseStudy.artist}</p>
             <p>{caseStudy.summary}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="research-areas-title">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">Research Areas</p>
+        <h2 id="research-areas-title">Follow the question that matters to you</h2>
+      </div>
+      <a class="home-action-link" href={`${baseUrl}case-studies/`}>All research topics</a>
+    </div>
+    <p class="results-note">
+      Each area groups case studies by the editorial question being investigated, not by a presumed payout.
+    </p>
+    <div class="editorial-grid">
+      {researchAreas.map((area) => (
+        <article class="card editorial-card">
+          <div class="artist-card-body">
+            <p class="eyebrow">{caseStudyTopicDefinitions.find((topic) => topic.id === area.topic)?.label}</p>
+            <h3>{area.title}</h3>
+            <p>{area.detail}</p>
+            <a class="home-action-link" href={`${baseUrl}case-studies/#${area.topic}`}>Explore this question</a>
           </div>
         </article>
       ))}
@@ -124,8 +173,8 @@ const explainers = [
 
   <section class="editorial-basis-card" aria-labelledby="catalog-use-title">
     <div class="editorial-basis-heading">
-      <p class="eyebrow">Catalog Research</p>
-      <h2 id="catalog-use-title">Browse records without mistaking them for published reporting</h2>
+      <p class="eyebrow">Supporting Research</p>
+      <h2 id="catalog-use-title">Use the catalog for context, not as a substitute for reporting</h2>
       <p>
         Artist and song profiles are useful navigation records. They are kept out of search indexing
         and advertising while their claims, sources, and model inputs are independently documented.

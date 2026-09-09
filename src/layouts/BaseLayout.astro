@@ -10,22 +10,16 @@ interface Props {
   type?: "website" | "article";
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
   noindex?: boolean;
-  analyticsContext?: {
-    contentType: string;
-    contentSlug: string;
-    contentFocus?: string;
-  };
 }
 
 const {
   title,
-  description = "Music earnings estimates with artist, song, album, ownership, and catalog context.",
+  description = "Source-led research about music rights, ownership, catalog history, and the limits of public income claims.",
   image,
   imageAlt = title,
   type = "website",
   jsonLd,
-  noindex = false,
-  analyticsContext
+  noindex = false
 } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL.endsWith("/")
@@ -37,15 +31,6 @@ const jsonLdPayload = jsonLd
   ? JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])
   : null;
 const searchIndexUrl = `${baseUrl}search-index.json`;
-const trustPagePaths = new Set([
-  "/about/",
-  "/contact/",
-  "/credits/",
-  "/editorial-policy/",
-  "/privacy/"
-]);
-const shouldLoadAds = !noindex && !trustPagePaths.has(Astro.url.pathname);
-const homePath = new URL(baseUrl, Astro.site).pathname;
 ---
 
 <!doctype html>
@@ -62,7 +47,6 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.toString()} />
-    <meta name="google-adsense-account" content="ca-pub-4706844277814411" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -73,33 +57,11 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
         <meta name="twitter:image" content={socialImage} />
       </>
     )}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WMBDVPWEG"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-8WMBDVPWEG");
-    </script>
     <script
       is:inline
       type="module"
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon={'{"token":"b634abe19016414bbc66aeb5bc7d5e62"}'}></script>
-    <script is:inline define:vars={{ homePath }}>
-      window.googlefc = window.googlefc || {};
-      // Keep the first-read homepage unobscured; consent still appears on content pages.
-      window.googlefc.controlledMessagingFunction = (message) => {
-        message.proceed(window.location.pathname !== homePath);
-      };
-    </script>
-    {shouldLoadAds && (
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4706844277814411"
-        crossorigin="anonymous"></script>
-    )}
     <title>{title}</title>
     {jsonLdPayload && (
       <script type="application/ld+json" set:html={jsonLdPayload} />
@@ -153,6 +115,14 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
       </div>
     </header>
 
+    <aside class="archive-banner" aria-label="Project status">
+      <div class="container">
+        <strong>Open-source archive.</strong>
+        <span>How Much Music is in maintenance mode with no scheduled publishing cadence.</span>
+        <a href="https://github.com/aolaru/artistmoney" rel="noreferrer" target="_blank">View source or contribute</a>
+      </div>
+    </aside>
+
     <main class="container">
       <slot />
     </main>
@@ -200,92 +170,24 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
             and rights notes are listed on the credits page.
           </p>
           <p class="footer-note">
-            Published and maintained by {publisher.ownerName}, trading as {publisher.tradingAs},
-            {" "}{publisher.entityType.toLowerCase()} in {publisher.location}.
+            Originally published and now maintained as an open-source archive by {publisher.ownerName},
+            trading as {publisher.tradingAs}, {publisher.entityType.toLowerCase()} in {publisher.location}.
           </p>
           <nav class="footer-nav" aria-label="Publisher information navigation">
             <a href={`mailto:${publisher.contactEmail}`}>{publisher.contactEmail}</a>
             <a href={`${baseUrl}contact/`}>Contact and corrections</a>
             <a href={`${baseUrl}privacy/`}>Privacy</a>
+            <a href="https://github.com/aolaru/artistmoney" rel="noreferrer" target="_blank">Source code</a>
           </nav>
           <p class="footer-note">© 2026 How Much Music</p>
         </div>
       </div>
     </footer>
-    <script is:inline define:vars={{ searchIndexUrl, baseUrl, analyticsContext }}>
+    <script is:inline define:vars={{ searchIndexUrl, baseUrl }}>
       (() => {
         let searchItemsPromise;
 
         const normalize = (value) => value.toLowerCase().trim();
-        const trackEvent = (name, params = {}) => {
-          if (typeof window.gtag === "function") {
-            window.gtag("event", name, params);
-          }
-        };
-        window.hmmTrackEvent = trackEvent;
-
-        if (analyticsContext?.contentType === "case_study") {
-          trackEvent("case_study_opened", {
-            content_type: analyticsContext.contentType,
-            content_slug: analyticsContext.contentSlug,
-            content_focus: analyticsContext.contentFocus ?? ""
-          });
-        }
-
-        const trackSearchSubmit = (query, location) => {
-          const searchTerm = query.trim();
-          if (!searchTerm) return;
-          trackEvent("search_submitted", {
-            search_term: searchTerm,
-            search_location: location
-          });
-        };
-
-        const trackSearchResultOpen = (location, item) => {
-          trackEvent("search_result_opened", {
-            search_location: location,
-            result_type: item.type,
-            result_title: item.title,
-            result_url: item.url,
-            result_reviewed: item.reviewed ? "true" : "false"
-          });
-        };
-
-        document.addEventListener("submit", (event) => {
-          const form = event.target;
-          if (!(form instanceof HTMLFormElement)) return;
-          const action = form.getAttribute("action") ?? "";
-          if (!action.includes("search/")) return;
-          if (form.classList.contains("search-page-form")) return;
-          const input = form.querySelector('input[name="q"]');
-          if (!(input instanceof HTMLInputElement)) return;
-          const location = form.classList.contains("header-search")
-            ? "header"
-            : form.classList.contains("home-search-form")
-              ? "homepage"
-              : "search_page";
-          trackSearchSubmit(input.value, location);
-        }, true);
-
-        document.addEventListener("click", (event) => {
-          if (!(event.target instanceof Element)) return;
-          const link = event.target.closest("[data-case-study-link]");
-          if (link) {
-            trackEvent("case_study_opened", {
-              content_type: "case_study",
-              content_slug: link.getAttribute("data-case-study-slug") ?? "",
-              content_origin: link.getAttribute("data-case-study-origin") ?? "internal_link"
-            });
-          }
-
-          const sourceLink = event.target.closest("[data-case-study-source-link]");
-          if (!sourceLink) return;
-          trackEvent("case_study_source_opened", {
-            content_type: "case_study",
-            content_slug: sourceLink.getAttribute("data-case-study-slug") ?? "",
-            source_position: sourceLink.getAttribute("data-case-study-source-index") ?? ""
-          });
-        });
 
         document.addEventListener("click", async (event) => {
           if (!(event.target instanceof Element)) return;
@@ -394,9 +296,6 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
                 const link = document.createElement("a");
                 link.href = item.url;
                 link.className = "header-search-link";
-                link.addEventListener("click", () => {
-                  trackSearchResultOpen("header_suggest", item);
-                });
                 link.innerHTML = `
                   <span class="header-search-type">${item.type}</span>
                   <strong>${item.title}</strong>
@@ -476,7 +375,6 @@ const homePath = new URL(baseUrl, Astro.site).pathname;
 
               if (event.key === "Enter" && activeIndex >= 0 && suggestions[activeIndex]) {
                 event.preventDefault();
-                trackSearchResultOpen("header_suggest", suggestions[activeIndex]);
                 window.location.href = suggestions[activeIndex].url;
                 return;
               }
